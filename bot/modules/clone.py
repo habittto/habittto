@@ -11,8 +11,8 @@ import string
 
 
 def cloneNode(update, context):
-    if ',' in link:
-        args = update.message.text.split(" ")
+    args = update.message.text.split(" ")
+    if ',' in args[1]:
         for x in args:
             if "google" in x:
                 x = x.replace(",", "")
