@@ -21,20 +21,20 @@ def cloneNode(update, context):
             res, size, name, files = gd.clonehelper(link)
             if res != "":
                 sendMessage(res, context.bot, update)
-                return
+                
             if STOP_DUPLICATE:
                 LOGGER.info('Checking File/Folder if already in Drive...')
                 smsg, button = gd.drive_list(name, True)
                 if smsg:
                     msg3 = "File/Folder is already available in Drive.\nHere are the search results:"
                     sendMarkup(msg3, context.bot, update, button)
-                    return
+                    
             if CLONE_LIMIT is not None:
                 result = check_limit(size, CLONE_LIMIT)
                 if result:
                     msg2 = f'Failed, Clone limit is {CLONE_LIMIT}.\nYour File/Folder size is {get_readable_file_size(size)}.'
                     sendMessage(msg2, context.bot, update)
-                    return
+                    
             if files < 15:
                 msg = sendMessage(f"Cloning: <code>{link}</code>", context.bot, update)
                 result, button = gd.clone(link)
